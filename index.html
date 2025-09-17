@@ -2,22 +2,360 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Portfolio</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Recent Work</title>
+  <link href="https://fonts.googleapis.com/css?family=Inter:400,500,700&display=swap" rel="stylesheet">
   <style>
-    body { font-family: sans-serif; max-width: 700px; margin: 50px auto; padding: 1em; }
-    h1 { text-align: center; }
-    ul { list-style: none; padding: 0; }
-    li { margin: 1em 0; }
-    a { text-decoration: none; color: #007acc; font-size: 1.2em; }
-    a:hover { text-decoration: underline; }
+    html, body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', system-ui, sans-serif;
+      background: #fcfcfc;
+      color: #181818;
+      font-size: 18px;
+      line-height: 1.6;
+    }
+    .navbar {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      padding: 1.5rem 3vw 1.2rem 3vw;
+      background: #fcfcfc;
+      border-bottom: 1px solid #ebebeb;
+      position: sticky;
+      top: 0;
+      z-index: 99;
+      min-height: 64px;
+    }
+    .navbar-menu {
+      display: flex;
+      gap: 2.1rem;
+    }
+    .navbar-menu a {
+      text-decoration: none;
+      color: #222;
+      font-weight: 500;
+      font-size: 1.05rem;
+      letter-spacing: 0.01em;
+      padding: 2px 0;
+      border-bottom: 2px solid transparent;
+      transition: border 0.18s, color 0.18s;
+    }
+    .navbar-menu a.active, .navbar-menu a:hover {
+      border-bottom: 2px solid #171717;
+      color: #171717;
+    }
+    main {
+      max-width: 1050px;
+      margin: 3rem auto 2rem auto;
+      padding: 0 1vw;
+    }
+    .page-title {
+      font-weight: 600;
+      font-size: 2.1rem;
+      margin: 0 0 2.7rem 0;
+      letter-spacing: -0.5px;
+      text-align: left;
+      color: #171717;
+    }
+    .masonry {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 2.2rem;
+    }
+    .main-column {
+      display: flex;
+      flex-direction: column;
+      gap: 2.2rem;
+    }
+    .main-article {
+      background: none;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      min-height: 330px;
+      border-radius: 0;
+      box-shadow: none;
+      border: none;
+    }
+    .main-article a {
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+    .main-article-img {
+      width: 100%;
+      min-height: 220px;
+      aspect-ratio: 16/9;
+      object-fit: cover;
+      filter: grayscale(100%);
+      border-radius: 0;
+      transition: filter 0.25s, transform 0.18s;
+      display: block;
+    }
+    .main-article:hover .main-article-img {
+      filter: grayscale(65%) contrast(1.05);
+      transform: scale(1.012);
+    }
+    .main-article-content {
+      padding: 0.75rem 0 0.1rem 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.28rem;
+      background: none;
+    }
+    .main-article-title {
+      font-weight: 600;
+      font-size: 1.20rem;
+      margin: 0 0 0.11rem 0;
+      line-height: 1.2;
+    }
+    .main-article-meta {
+      font-size: 0.97rem;
+      color: #868686;
+      margin-bottom: 0.18rem;
+      font-weight: 400;
+    }
+    .main-article-summary {
+      font-size: 0.99rem;
+      color: #444;
+      margin: 0;
+      font-weight: 400;
+    }
+    .side-column {
+      display: flex;
+      flex-direction: column;
+      gap: 2.2rem;
+    }
+    .side-article {
+      background: none;
+      overflow: hidden;
+      min-height: 140px;
+      border-radius: 0;
+      box-shadow: none;
+      border: none;
+      display: flex;
+      flex-direction: column;
+    }
+    .side-article a {
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+    .side-article-img {
+      width: 100%;
+      min-height: 110px;
+      aspect-ratio: 4/3;
+      object-fit: cover;
+      filter: grayscale(100%);
+      border-radius: 0;
+      transition: filter 0.22s, transform 0.16s;
+      display: block;
+    }
+    .side-article:hover .side-article-img {
+      filter: grayscale(65%) contrast(1.05);
+      transform: scale(1.01);
+    }
+    .side-article-content {
+      padding: 0.6rem 0 0.08rem 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.11rem;
+      background: none;
+    }
+    .side-article-title {
+      font-weight: 500;
+      font-size: 1.04rem;
+      margin: 0 0 0.09rem 0;
+      line-height: 1.17;
+    }
+    .side-article-meta {
+      font-size: 0.93rem;
+      color: #868686;
+      margin-bottom: 0.09rem;
+      font-weight: 400;
+    }
+    .side-article-summary {
+      font-size: 0.93rem;
+      color: #444;
+      margin: 0;
+      font-weight: 400;
+    }
+    .bottom-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.3rem;
+      margin-top: 2.2rem;
+    }
+    .bottom-article {
+      background: none;
+      overflow: hidden;
+      min-height: 110px;
+      border-radius: 0;
+      box-shadow: none;
+      border: none;
+      display: flex;
+      flex-direction: column;
+    }
+    .bottom-article a {
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+    .bottom-article-img {
+      width: 100%;
+      min-height: 70px;
+      aspect-ratio: 4/3;
+      object-fit: cover;
+      filter: grayscale(100%);
+      border-radius: 0;
+      transition: filter 0.2s, transform 0.14s;
+      display: block;
+    }
+    .bottom-article:hover .bottom-article-img {
+      filter: grayscale(65%) contrast(1.05);
+      transform: scale(1.01);
+    }
+    .bottom-article-content {
+      padding: 0.43rem 0 0.06rem 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.07rem;
+      background: none;
+    }
+    .bottom-article-title {
+      font-weight: 500;
+      font-size: 1rem;
+      margin: 0 0 0.04rem 0;
+      line-height: 1.17;
+    }
+    .bottom-article-meta {
+      font-size: 0.91rem;
+      color: #868686;
+      margin-bottom: 0.08rem;
+      font-weight: 400;
+    }
+    .bottom-article-summary {
+      font-size: 0.91rem;
+      color: #444;
+      margin: 0;
+      font-weight: 400;
+    }
+    @media (max-width: 900px) {
+      .masonry { grid-template-columns: 1fr;}
+      .bottom-row { grid-template-columns: 1fr; gap: 1rem;}
+    }
+    @media (max-width: 600px) {
+      main { padding: 0 0.5vw;}
+      .navbar { padding: 0.7rem 1vw;}
+      .page-title { font-size: 1.2rem;}
+      .main-article-content, .side-article-content, .bottom-article-content { padding: 0.4rem 0 0.6rem 0;}
+    }
   </style>
 </head>
 <body>
-  <h1>Portfolio</h1>
-  <ul>
-    <li><a href="https://example1.com" target="_blank">Project One</a></li>
-    <li><a href="https://example2.com" target="_blank">Project Two</a></li>
-    <li><a href="https://example3.com" target="_blank">Project Three</a></li>
-  </ul>
+  <nav class="navbar">
+    <div class="navbar-menu">
+      <a href="index.html" class="active">Recent Work</a>
+      <a href="about.html">About Me</a>
+    </div>
+  </nav>
+  <main>
+    <h1 class="page-title">Recent Work</h1>
+    <div class="masonry">
+      <div class="main-column">
+        <!-- Large main article -->
+        <div class="main-article">
+          <a href="article1.html">
+            <img class="main-article-img" src="images/article1.jpg" alt="ogunbowale">
+            <div class="main-article-content">
+              <div class="main-article-title">ogunbowale</div>
+              <div class="main-article-meta">Sport</div>
+              <div class="main-article-summary">Sorry, but nothing was found. Please try a search with different keywords.</div>
+            </div>
+          </a>
+        </div>
+        <!-- Large secondary article -->
+        <div class="main-article">
+          <a href="article2.html">
+            <img class="main-article-img" src="images/article2.jpg" alt="Jumbled Alphabet">
+            <div class="main-article-content">
+              <div class="main-article-title">Jumbled Alphabet</div>
+              <div class="main-article-meta">Art</div>
+              <div class="main-article-summary">Sorry, but nothing was found. Please try a search with different keywords.</div>
+            </div>
+          </a>
+        </div>
+      </div>
+      <div class="side-column">
+        <!-- Top right article -->
+        <div class="side-article">
+          <a href="article3.html">
+            <img class="side-article-img" src="images/article3.jpg" alt="Grief and chickens">
+            <div class="side-article-content">
+              <div class="side-article-title">Grief and chickens</div>
+              <div class="side-article-meta">Art</div>
+              <div class="side-article-summary">Sorry, but nothing was found. Please try a search with different keywords.</div>
+            </div>
+          </a>
+        </div>
+        <!-- Middle right article -->
+        <div class="side-article">
+          <a href="article4.html">
+            <img class="side-article-img" src="images/article4.jpg" alt="London hijabis hold on fashion">
+            <div class="side-article-content">
+              <div class="side-article-title">London hijabis hold on fashion</div>
+              <div class="side-article-meta">Fashion</div>
+              <div class="side-article-summary">Sorry, but nothing was found. Please try a search with different keywords.</div>
+            </div>
+          </a>
+        </div>
+        <!-- Bottom right article -->
+        <div class="side-article">
+          <a href="article5.html">
+            <img class="side-article-img" src="images/article5.jpg" alt="sexy / godly">
+            <div class="side-article-content">
+              <div class="side-article-title">sexy / godly</div>
+              <div class="side-article-meta">Pop Culture, TV</div>
+              <div class="side-article-summary">Sorry, but nothing was found. Please try a search with different keywords.</div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+    <!-- Bottom grid for more articles -->
+    <div class="bottom-row">
+      <div class="bottom-article">
+        <a href="article6.html">
+          <img class="bottom-article-img" src="images/article6.jpg" alt="More work 1">
+          <div class="bottom-article-content">
+            <div class="bottom-article-title">No results found.</div>
+            <div class="bottom-article-meta"></div>
+            <div class="bottom-article-summary">Sorry, but nothing was found. Please try a search with different keywords.</div>
+          </div>
+        </a>
+      </div>
+      <div class="bottom-article">
+        <a href="article7.html">
+          <img class="bottom-article-img" src="images/article7.jpg" alt="More work 2">
+          <div class="bottom-article-content">
+            <div class="bottom-article-title"></div>
+            <div class="bottom-article-meta"></div>
+            <div class="bottom-article-summary">Sorry, but nothing was found. Please try a search with different keywords.</div>
+          </div>
+        </a>
+      </div>
+      <div class="bottom-article">
+        <a href="article8.html">
+          <img class="bottom-article-img" src="images/article8.jpg" alt="More work 3">
+          <div class="bottom-article-content">
+            <div class="bottom-article-title"></div>
+            <div class="bottom-article-meta"></div>
+            <div class="bottom-article-summary">Sorry, but nothing was found. Please try a search with different keywords.</div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </main>
 </body>
 </html>
