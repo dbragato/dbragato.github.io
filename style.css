@@ -1,0 +1,296 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter', system-ui, sans-serif;
+    background: #fcfcfc;
+    color: #181818;
+    font-size: 18px;
+    line-height: 1.6;
+  }
+  .navbar {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 1.5rem 3vw 1.2rem 3vw;
+    background: #fcfcfc;
+    border-bottom: 1px solid #ebebeb;
+    position: sticky;
+    top: 0;
+    z-index: 99;
+    min-height: 64px;
+  }
+  .navbar-menu {
+    display: flex;
+    gap: 2.1rem;
+  }
+  .navbar-menu a {
+    text-decoration: none;
+    color: #222;
+    font-weight: 500;
+    font-size: 1.05rem;
+    letter-spacing: 0.01em;
+    padding: 2px 0;
+    border-bottom: 2px solid transparent;
+    transition: border 0.18s, color 0.18s;
+  }
+  .navbar-menu a.active, .navbar-menu a:hover {
+    border-bottom: 2px solid #171717;
+    color: #171717;
+  }
+  main {
+    max-width: 1050px;
+    margin: 3rem auto 2rem auto;
+    padding: 0 1vw;
+  }
+  .page-title {
+    font-weight: 600;
+    font-size: 2.1rem;
+    margin: 0 0 2.7rem 0;
+    letter-spacing: -0.5px;
+    text-align: left;
+    color: #171717;
+  }
+  .masonry {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 2.2rem;
+  }
+  .main-column {
+    display: flex;
+    flex-direction: column;
+    gap: 2.2rem;
+  }
+  .main-article {
+    background: none;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    min-height: 330px;
+    border-radius: 0;
+    box-shadow: none;
+    border: none;
+  }
+  .main-article a {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+  }
+  .main-article-img {
+    width: 100%;
+    min-height: 220px;
+    aspect-ratio: 16/9;
+    object-fit: cover;
+    border-radius: 0;
+    transition: filter 0.25s, transform 0.18s;
+    display: block;
+  }
+  .main-article:hover .main-article-img {
+    transform: scale(1.012);
+  }
+  .main-article-content {
+    padding: 0.75rem 0 0.1rem 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.28rem;
+    background: none;
+  }
+  .main-article-title {
+    font-weight: 600;
+    font-size: 1.20rem;
+    margin: 0 0 0.11rem 0;
+    line-height: 1.2;
+  }
+  .main-article-meta {
+    font-size: 0.97rem;
+    color: #868686;
+    margin-bottom: 0.18rem;
+    font-weight: 400;
+  }
+  .main-article-summary {
+    font-size: 0.99rem;
+    color: #444;
+    margin: 0;
+    font-weight: 400;
+  }
+  .side-column {
+    display: flex;
+    flex-direction: column;
+    gap: 2.2rem;
+  }
+  .side-article {
+    background: none;
+    overflow: hidden;
+    min-height: 140px;
+    border-radius: 0;
+    box-shadow: none;
+    border: none;
+    display: flex;
+    flex-direction: column;
+  }
+  .side-article a {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+  }
+  .side-article-img {
+    width: 100%;
+    min-height: 110px;
+    aspect-ratio: 4/3;
+    object-fit: cover;
+    border-radius: 0;
+    transition: filter 0.22s, transform 0.16s;
+    display: block;
+  }
+  .side-article:hover .side-article-img {
+    transform: scale(1.01);
+  }
+  .side-article-content {
+    padding: 0.6rem 0 0.08rem 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.11rem;
+    background: none;
+  }
+  .side-article-title {
+    font-weight: 500;
+    font-size: 1.04rem;
+    margin: 0 0 0.09rem 0;
+    line-height: 1.17;
+  }
+  .side-article-meta {
+    font-size: 0.93rem;
+    color: #868686;
+    margin-bottom: 0.09rem;
+    font-weight: 400;
+  }
+  .side-article-summary {
+    font-size: 0.93rem;
+    color: #444;
+    margin: 0;
+    font-weight: 400;
+  }
+  .bottom-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.3rem;
+    margin-top: 2.2rem;
+  }
+  .bottom-article {
+    background: none;
+    overflow: hidden;
+    min-height: 110px;
+    border-radius: 0;
+    box-shadow: none;
+    border: none;
+    display: flex;
+    flex-direction: column;
+  }
+  .bottom-article a {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+  }
+  .bottom-article-img {
+    width: 100%;
+    min-height: 70px;
+    aspect-ratio: 4/3;
+    object-fit: cover;
+    border-radius: 0;
+    transition: filter 0.2s, transform 0.14s;
+    display: block;
+  }
+  .bottom-article:hover .bottom-article-img {
+    transform: scale(1.01);
+  }
+  .bottom-article-content {
+    padding: 0.43rem 0 0.06rem 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.07rem;
+    background: none;
+  }
+  .bottom-article-title {
+    font-weight: 500;
+    font-size: 1rem;
+    margin: 0 0 0.04rem 0;
+    line-height: 1.17;
+  }
+  .bottom-article-meta {
+    font-size: 0.91rem;
+    color: #868686;
+    margin-bottom: 0.08rem;
+    font-weight: 400;
+  }
+  .bottom-article-summary {
+    font-size: 0.91rem;
+    color: #444;
+    margin: 0;
+    font-weight: 400;
+  }
+  @media (max-width: 900px) {
+    .masonry { grid-template-columns: 1fr;}
+    .bottom-row { grid-template-columns: 1fr; gap: 1rem;}
+  }
+  @media (max-width: 600px) {
+    main { padding: 0 0.5vw;}
+    .navbar { padding: 0.7rem 1vw;}
+    .page-title { font-size: 1.2rem;}
+    .main-article-content, .side-article-content, .bottom-article-content { padding: 0.4rem 0 0.6rem 0;}
+  }
+
+  .site-footer {
+padding: 2.5rem 0 1.5rem 0;
+background: #fafafa;
+border-top: 1px solid #ececec;
+text-align: center;
+margin-top: 4rem;
+}
+
+.footer-content {
+display: flex;
+flex-direction: column;
+align-items: center;
+gap: 0.7rem;
+}
+
+.footer-name {
+font-size: 1.09rem;
+font-weight: 500;
+color: #171717;
+letter-spacing: 0.01em;
+margin-bottom: 0.4rem;
+}
+
+.footer-links {
+display: flex;
+justify-content: center;
+gap: 1.7rem;
+margin-top: 0.15rem;
+}
+
+.footer-link {
+display: flex;
+align-items: center;
+color: #232323;
+opacity: 0.87;
+transition: opacity 0.18s;
+text-decoration: none;
+}
+
+.footer-link:hover,
+.footer-link:focus {
+opacity: 1;
+}
+
+.footer-icon {
+width: 22px;
+height: 22px;
+display: inline-block;
+vertical-align: middle;
+}
+
+@media (max-width: 600px) {
+.footer-links {
+  gap: 1.1rem;
+}
+}
